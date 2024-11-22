@@ -1,0 +1,15 @@
+# Ignore Maven output folders
+target/
+
+# Ignore IDE configurations
+.idea
+*.iml
+*.class
+
+# Ignore Git and logs
+.git
+*.log
+
+# Ignore system files
+.DS_Store
+*.swp
