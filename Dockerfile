@@ -1,33 +1,16 @@
-# Sử dụng Maven image làm builder để build ứng dụng
-FROM maven:3.8.4-openjdk-17 AS builder
-
-# Tạo thư mục làm việc trong image
-WORKDIR /app
-
-# Copy toàn bộ source code vào container
-COPY . .
-
-# Build ứng dụng bằng Maven, bỏ qua các bài test
-RUN mvn clean package -DskipTests
-
-
-# Sử dụng OpenJDK slim image để chạy ứng dụng
+# Sử dụng base image Java
 FROM openjdk:17-jdk-slim
 
-# Tạo thư mục làm việc trong container
+# Tạo thư mục làm việc
 WORKDIR /app
 
-# Copy file JAR từ stage builder
-COPY --from=builder /app/target/*.jar app.jar
+# Sao chép file JAR đã build từ `target`
+COPY target/freshfood-1.0.jar app.jar
 
-# Sao chép template vào đúng thư mục để Spring Boot có thể tìm thấy
-COPY src/main/resources/templates /app/templates
+# Giải nén file JAR để đảm bảo tất cả tài nguyên được sử dụng
+RUN mkdir -p /app/resources && \
+    cd /app && \
+    jar -xf app.jar
 
-# Thiết lập biến môi trường để Spring Boot biết đường dẫn template
-ENV SPRING_TEMPLATES_PATH=/app/templates
-
-# Expose cổng 8080 để ứng dụng chạy
-EXPOSE 8080
-
-# Command mặc định để chạy ứng dụng
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Chạy ứng dụng Spring Boot
+ENTRYPOINT ["java", "-cp", "/app:/app/resources", "org.springframework.boot.loader.JarLauncher"]
