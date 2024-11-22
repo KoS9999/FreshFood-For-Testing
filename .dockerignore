@@ -1,5 +1,6 @@
-# Ignore Maven output folders
-target/
+# Ignore everything in target except the JAR file
+target/*
+!target/freshfood-1.0.jar
 
 # Ignore IDE configurations
 .idea
