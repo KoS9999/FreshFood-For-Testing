@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="mironcoder">
+    <meta name="email" content="mironcoder@gmail.com">
+    <meta name="profile" content="https://themeforest.net/user/mironcoder">
+    <meta name="template" content="greeny">
+    <meta name="title" content="greeny - Ecommerce Food Store HTML Template">
+    <meta name="keywords"
+        content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online">
+    <title>Web bán thực phẩm sạch</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="fonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="fonts/icofont/icofont.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="vendor/venobox/venobox.min.css">
+    <link rel="stylesheet" href="vendor/slickslider/slick.min.css">
+    <link rel="stylesheet" href="vendor/niceselect/nice-select.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+    <!--************************************
+                Header Start
+        *************************************-->
+    <header th:replace="~{/web/fragments/header :: header}"></header>
+    <!--************************************
+                Header End
+        *************************************-->
+
+    <section class="inner-section single-banner" style="background: url(images/long-banner.jpg) no-repeat center;">
+        <div class="container">
+            <h2>Thông tin hữu ích</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}">Trang chủ</a></li>
+            </ol>
+        </div>
+    </section>
+    <section class="inner-section contact-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4" onclick="scrollToContactDetails()">
+                    <div class="contact-card">
+                        <i class="icofont-food-basket"></i>
+                        <h4>Công thức nấu ăn</h4>
+                        <p>Hướng dẫn chi tiết các món ăn ngon sử dụng sản phẩm của chúng tôi. Gợi ý thực đơn dinh dưỡng và món ăn theo mùa.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" onclick="scrollToContactDetails1()">
+                    <div class="contact-card">
+                        <i class="icofont-heart-beat-alt"></i>
+                        <h4>Lợi ích sức khỏe của nông sản và Tin tức và xu hướng trong nông nghiệp</h4>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+    <section class="inner-section contact-details" id="contact-details">
+     <div class="wrapper">
+        <h2 class="title">CÔNG THỨC NẤU ĂN</h2>
+        <h3 class="sub_title">Rau muốn xào tỏi</h3>
+        <div class="wraper_img">
+            <div class="wraper_img_edit">
+                <img src="https://media.cooky.vn/recipe/g2/18337/s/recipe18337-prepare-step4-636118634775936636.jpg" alt="">
+            </div>
+            <div class="tutorial">
+                <h3>Nguyên liệu</h3>
+                <p>-1 bó rau muống (khoảng 300-400g)</p>
+                <p>  -4-5 tép tỏi (tùy vào sở thích, bạn có thể tăng hoặc giảm lượng tỏi)</p>
+                <p> -2-3 thìa dầu ăn</p>
+                <p> -1 thìa cà phê muối</p>
+                <p>  -1 thìa cà phê đường</p>
+                <p>-1 thìa cà phê hạt nêm (tùy chọn)</p>
+                <p> -1/2 thìa cà phê bột ngọt (tùy chọn)</p>
+            </div>
+            <div class="tutorial">
+                <h3>Cách thực hiện</h3>
+                <p>Bước 1: Chuẩn bị rau muống:</p>
+                <p>-Nhặt và rửa sạch rau muống. Loại bỏ những lá già hoặc hỏng, cắt bỏ phần gốc.</p>
+                <p>Bước 2:Chuẩn bị tỏi</p>
+                <p>Bước 3:Chần rau muống </p>
+                <p>Bước 4:Xào rau:</p>
+                <p>-Đun nóng chảo, thêm 2-3 thìa dầu ăn vào. Khi dầu nóng, cho tỏi băm vào phi thơm. </p>
+                <p>-Cho rau muống vào chảo, đảo đều. Nêm muối, đường, hạt nêm và bột ngọt (nếu dùng). Tiếp tục đảo đều trong khoảng 2-3 phút cho đến khi rau muống chín mềm và thấm gia vị.</p>
+            </div>
+        </div>
+        <h3 class="sub_title">Nấu canh bí đỏ</h3>
+        <div class="wraper_img">
+            <div class="wraper_img_edit">
+                <img src="https://th.bing.com/th/id/OIP.dVXDhmi2a6lm6WbPfC5jgAAAAA?rs=1&pid=ImgDetMain" alt="">
+            </div>
+            <div class="tutorial">
+                <h3>Nguyên liệu</h3>
+                <p>300g bí đỏ</p>
+                <p>200g thịt heo</p>
+                <p>1 củ hành tím , 2-3 tép tỏi</p>
+                <p>1-2 thìa dầu ăn, 1 thìa cà phê muối , 1 thìa cà phê đường,1 thìa cà phê hạt nêm</p>
+                 <p>1 ít hành lá và rau mùi (ngò rí) để trang trí</p>
+            </div>
+            <div class="tutorial">
+                <h3>Cách thực hiện</h3>
+                <p>Bước 1: Chuẩn bị nguyên liệu:</p>
+                <p>-Bí đỏ: Gọt vỏ, bỏ hạt và rửa sạch, sau đó cắt thành miếng vừa ăn.</p>
+                <p>-Thịt heo: Nếu dùng thịt băm, bạn có thể ướp chút muối, hạt nêm và đường.</p>
+                <p>Bước 2: Xào thịt:</p>
+                <p>-Đun nóng chảo, thêm 1-2 thìa dầu ăn. Khi dầu nóng, cho hành tím và tỏi băm vào phi thơm.</p>
+                <p>-Cho thịt heo đã ướp vào chảo, xào cho đến khi thịt săn lại và chín tới.</p>
+                <p>Bước 3:Nấu canh: </p>
+                <p>-Đun sôi khoảng 1,5 lít nước trong nồi. Khi nước sôi, cho thịt đã xào vào.</p>
+                <p>-Đun lửa nhỏ và nấu cho đến khi bí đỏ chín mềm, khoảng 15-20 phút.</p>
+                <p>Bước 4:Hoàn thiện và thưởng thức:</p>
+                <p>-Khi bí đỏ đã chín mềm, nếm lại canh để điều chỉnh gia vị nếu cần.</p>
+            </div>
+        </div>
+        <h3 class="sub_title">Làm sinh tố trái cây</h3>
+        <div class="wraper_img">
+            <div class="wraper_img_edit">
+                <img src="https://i.ytimg.com/vi/u2tC98qpnqY/maxresdefault.jpg" alt="">
+            </div>
+            <div class="tutorial">
+                <h3>Nguyên liệu</h3>
+                <p>-1 quả chuối  </p>
+                <p> -1 quả táo</p>
+                <p> -1/2 quả xoài</p>
+                <p>-1/2 cốc dâu tây tươi hoặc đông lạnh</p>
+                <p>-1 cốc sữa tươi hoặc sữa chua</p>
+                <p>-1/2 cốc đá viên</p>
+            </div>
+            <div class="tutorial">
+                <h3>Cách thực hiện</h3>
+                <p>Bước 1: Chuẩn bị nguyên liệu:</p>
+                <p>-Chuối: Bóc vỏ và cắt thành khoanh.</p>
+                <p>-Táo: Rửa sạch, gọt vỏ (nếu muốn), bỏ lõi và cắt thành miếng nhỏ.</p>
+                <p>-Xoài: Gọt vỏ, bỏ hạt và cắt thành miếng.</p>
+                <p>-Dâu tây: Rửa sạch, bỏ cuống. Nếu dùng dâu tây đông lạnh, không cần rã đông.</p>
+                <p>Bước 2:Xay sinh tố:</p>
+                <p>-Cho tất cả các loại trái cây đã chuẩn bị vào máy xay sinh tố.</p>
+                <p>-Thêm sữa tươi hoặc sữa chua vào máy xay.</p>
+                <p>-Thêm đá viên nếu muốn sinh tố lạnh và đặc.</p>
+                <p>Bước 3:Xay nhuyễn:</p>
+                <p>Bước 4:Hoàn thiện và thưởng thức:</p>
+                <p>-Thưởng thức ngay khi lạnh để cảm nhận vị tươi mát và dinh dưỡng từ trái cây.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="inner-section contact-details1" id="contact-details1">
+     <div class="wrapper">
+        <h2 class="title">LỢI ÍCH VÀ TIN TỨC CỦA NÔNG SẢN </h2>
+        <div class="wraper_img">
+            <div class="wraper_img_edit">
+                <img src="https://th.bing.com/th/id/OIP.hAsLh6UDElNLpQyV8KZwwgHaEk?rs=1&pid=ImgDetMain" alt="">
+                <p>Rau,củ</p>
+            </div>
+            <div class="tutorial">
+                <h3>Lợi ích </h3>
+                <p>Cung cấp chất xơ:</p>
+                <p>-Rau xanh là nguồn cung cấp chất xơ dồi dào, giúp cải thiện chức năng tiêu hóa, ngăn ngừa táo bón và hỗ trợ duy trì cân nặng lành mạnh.</p>
+                <p>Giàu vitamin và khoáng chất:</p>
+                <p>-Rau chứa nhiều vitamin (như vitamin A, C, K, và các vitamin nhóm B) và khoáng chất (như kali, canxi, magiê, và sắt) cần thiết cho cơ thể.</p>
+                <p>Chứa chất chống oxy hóa:</p>
+                <p>-Các loại rau xanh như cải bó xôi, bông cải xanh, và rau cải xanh chứa nhiều chất chống oxy hóa, giúp bảo vệ tế bào khỏi tổn thương do gốc tự do, giảm nguy cơ mắc các bệnh mãn tính như bệnh tim và ung thư.</p>
+                <p>Giảm nguy cơ mắc bệnh mãn tính:</p>
+                <p>-Chế độ ăn giàu rau xanh có thể giảm nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và các bệnh tim mạch.</p>
+            </div>
+        </div>
+        <div class="wraper_img">
+            <div class="wraper_img_edit">
+                <img src="https://th.bing.com/th/id/R.5c7f2acf78dc2272247050400412da09?rik=B5HfMbfCZ2RpVQ&pid=ImgRaw&r=0" alt="">
+                <p>Trái cây</p>
+            </div>
+            <div class="tutorial">
+                <h3>Lợi ích </h3>
+                <p>Cung cấp vitamin và khoáng chất:</p>
+                <p>-Trái cây là nguồn cung cấp phong phú các vitamin (như vitamin C, A, E, và các vitamin nhóm B) và khoáng chất (như kali, canxi, magiê).</p>
+                <p>Hỗ trợ hệ miễn dịch:</p>
+                <p>-Trái cây như cam, chanh, và kiwi giàu vitamin C, giúp tăng cường hệ miễn dịch, giúp cơ thể chống lại bệnh tật.</p>
+                <p>Cải thiện sức khỏe tim mạch:</p>
+                <p>-Các loại trái cây như táo, chuối, và quả mọng chứa các hợp chất giúp giảm huyết áp, giảm cholesterol và cải thiện sức khỏe tim mạch.</p>
+                <p>Tốt cho sức khỏe da:</p>
+                <p>-Trái cây như dâu tây, cam và bơ chứa nhiều vitamin và chất chống oxy hóa, giúp duy trì làn da khỏe mạnh và giảm nguy cơ lão hóa sớm.</p>
+            </div>
+        </div>
+        <div class="wraper_img">
+            <div class="wraper_img_edit">
+                <img src="https://th.bing.com/th/id/OIP.S_dzQ1DGi0U845u6b8X4uAHaFj?rs=1&pid=ImgDetMain" alt="">
+            </div>
+            <div class="tutorial">
+                <h3>Tin tức </h3>
+                <h4>5 Loại trái cây nên ăn mỗi ngày </h4>
+                <p>Bạn có biết rằng việc ăn trái cây hàng ngày có thể cải thiện sức khỏe và mang lại năng lượng dồi dào cho cả ngày dài? Hãy cùng khám phá 5 loại trái cây không chỉ ngon miệng mà còn mang lại vô vàn lợi ích cho sức khỏe của bạn. Đọc ngay để biết đó là những loại trái cây nào và tại sao chúng lại quan trọng đến vậy! </p>
+                <a th:href="@{/article1}">Xem Bài Viết</a>
+            </div>
+        </div>
+        <div class="wraper_img">
+            <div class="wraper_img_edit">
+                <img src="https://th.bing.com/th/id/OIP.e6MDDswzDeXqDvrBU0_hagHaFj?rs=1&pid=ImgDetMain" alt="">
+            </div>
+            <div class="tutorial">
+                <h3>Tin tức </h3>
+                <h4>Cách nhận biết rau ,củ quả tươi sạch </h4>
+                <p>Bạn đã bao giờ tự hỏi làm thế nào để chọn được rau, củ, quả tươi ngon và an toàn ngay tại chợ hay siêu thị? Khám phá ngay những bí quyết đơn giản nhưng hiệu quả để trở thành chuyên gia lựa chọn thực phẩm sạch cho gia đình bạn! </p>
+                <a th:href="@{/article2}">Xem Bài Viết</a>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <section class="news-part" style="background: url(images/newsletter.jpg) no-repeat center;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5 col-lg-6 col-xl-7">
+                    <div class="news-text">
+                        <h2>Nhận Chiết Khấu 20% Cho Người Đăng Ký</h2>
+                        <p>Nhận Chiết Khấu 20% Cho Người Đăng Ký</p>
+                    </div>
+                </div>
+                <div class="col-md-7 col-lg-6 col-xl-5">
+                    <form class="news-form">
+                        <input type="text" placeholder="Nhập địa chỉ Email của bạn">
+                        <button>
+                            <span><i class="icofont-ui-email"></i>Gửi</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="intro-part">
+        <div class="container">
+            <div class="row intro-content">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="intro-wrap">
+                        <div class="intro-icon"><i class="fas fa-truck"></i></div>
+                        <div class="intro-content">
+                            <h5>Giao Hàng Tận Nhà Miễn Phí</h5>
+                            <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="intro-wrap">
+                        <div class="intro-icon"><i class="fas fa-sync-alt"></i></div>
+                        <div class="intro-content">
+                            <h5>Chính Sách Hoàn Trả</h5>
+                            <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="intro-wrap">
+                        <div class="intro-icon"><i class="fas fa-headset"></i></div>
+                        <div class="intro-content">
+                            <h5>Hệ Thống Hỗ Trợ</h5>
+                            <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="intro-wrap">
+                        <div class="intro-icon"><i class="fas fa-lock"></i></div>
+                        <div class="intro-content">
+                            <h5>Cách Thanh Toán An Toàn</h5>
+                            <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--************************************
+                Footer Start
+        *************************************-->
+    <footer th:replace="~{/web/fragments/footer :: footer}"></footer>
+    <!--************************************
+                Footer End
+        *************************************-->
+        
+    <script src="vendor/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="vendor/bootstrap/popper.min.js"></script>
+    <script src="vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="vendor/countdown/countdown.min.js"></script>
+    <script src="vendor/niceselect/nice-select.min.js"></script>
+    <script src="vendor/slickslider/slick.min.js"></script>
+    <script src="vendor/venobox/venobox.min.js"></script>
+    <script src="js/nice-select.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/venobox.js"></script>
+    <script src="js/slick.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+    function scrollToContactDetails() {
+        // Cuộn đến phần "inner-section contact-details"
+        document.getElementById('contact-details').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+<script>
+    function scrollToContactDetails1() {
+        // Cuộn đến phần "inner-section contact-details"
+        document.getElementById('contact-details1').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
