@@ -1,0 +1,50 @@
+.contact-form{border-radius:8px;padding:30px 30px;margin:0px 2.5px 30px;background:var(--white)}.contact-form h4{margin-bottom:25px}.contact-map{padding:30px;margin:0px 2.5px 30px;border-radius:8px;background:var(--white)}.contact-map iframe{width:100%;border:none;height:474px}.contact-social{text-align:center;margin-top:20px}.contact-social h4{margin-bottom:20px}@media (max-width: 575px){.contact-form,.contact-map{padding:15px}}@media (min-width: 401px) and (max-width: 575px){.contact-part .container{max-width:400px}}
+.sub_title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.wrapper h2 {
+    text-align: center;
+}
+
+.wrapper h3 {
+    text-align: center;
+}
+
+.wraper_img {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    border-bottom: 1px solid #CCC;
+}
+
+.wraper_img_edit {
+    text-align: center;
+    padding: 0px 50px 0px 50px;
+    border-right: 1px solid #CCC;
+}
+
+.wraper_img_edit p {
+   font-style: italic;
+}
+
+.tutorial {
+    padding: 0px 100px 0px 100px;
+    height: 100%;
+    width: 100%;
+}
+tutorial:first-child {
+    margin-right: 0;
+    border-right: 1px solid #CCC;
+}
+
+
+.tutorial p{
+    margin-top: 10px;
+}
+
+
+.wraper_img img {
+    height: 200px;
+}
