@@ -108,6 +108,4 @@ public class ReportController {
 		return "admin/statistical";
 	}
 	
-	// end task developer by DongTHD
-
 }

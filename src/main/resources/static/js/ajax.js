@@ -45,52 +45,60 @@ $(document).ready(function() {
 	}
 
 	function updateCartSidebar(cartItems, totalPrice) {
-		if (cartItems.length === 0) {
-			$('.cart-list').html('<li>Hiện tại bạn chưa có sản phẩm nào trong giỏ hàng!</li>');
-			$('.cart-footer').hide();
-		} else {
-			var cartHtml = '';
-			$.each(cartItems, function(index, item) {
-				var unitPrice = (item.product.price - (item.product.price * item.product.discount / 100)).toFixed(0);
-				var totalPriceForItem = (unitPrice * item.quantity).toFixed(0);
+    if (cartItems.length === 0) {
+        $('.cart-list').html('<li>Hiện tại bạn chưa có sản phẩm nào trong giỏ hàng!</li>');
+        $('.cart-footer').hide();
+    } else {
+        var cartHtml = '';
+        $.each(cartItems, function(index, item) {
+            var unitPrice = (item.product.price - (item.product.price * item.product.discount / 100)).toFixed(0);
+            var totalPriceForItem = (unitPrice * item.quantity).toFixed(0);
 
-				cartHtml += '<li class="cart-item">' +
-					'<div class="cart-media">' +
-					'<a href="/productDetail?id=' + item.product.productId + '">' +
-					'<img src="/loadImage?imageName=' + item.product.productImage + '" alt="product" />' +
-					'</a>' +
-					'</div>' +
-					'<div class="cart-info-group">' +
-					'<div class="cart-info">' +
-					'<h6><label>Tên sản phẩm :</label>' +
-					'<a href="/productDetail?id=' + item.product.productId + '" style="color: #119744">' + item.product.productName + '</a>' +
-					'</h6>' +
-					'<label>Đơn giá :</label>' +
-					'<p>' + parseInt(unitPrice).toLocaleString('vi-VN') + ' đ</p>' +
-					'</div>' +
-					'<div class="cart-action-group">' +
-					'<div class="product-action">' +
-					'<label>Số lượng :</label>' +
-					'<input class="action-input quantity-input" title="Quantity Number" type="number" name="quantity" value="' + item.quantity + '" data-product-id="' + item.product.productId + '" />' +
-					'</div>' +
-					'<h6 class="total-price">' + parseInt(totalPriceForItem).toLocaleString('vi-VN') + ' đ</h6>' +
-					'</div>' +
-					'</div>' +
-					'</li>';
-			});
-			$('.cart-list').html(cartHtml);
-			$('.cart-footer').show();
+            cartHtml += '<li class="cart-item">' +
+                '<div class="cart-media">' +
+                '<a href="/productDetail?id=' + item.product.productId + '">' +
+                '<img src="/loadImage?imageName=' + item.product.productImage + '" alt="product" />' +
+                '</a>' +
+                '</div>' +
+                '<div class="cart-info-group">' +
+                '<div class="cart-info">' +
+                '<h6><label>Tên sản phẩm :</label>' +
+                '<a href="/productDetail?id=' + item.product.productId + '" style="color: #119744">' + item.product.productName + '</a>' +
+                '</h6>' +
+                '<label>Đơn giá :</label>' +
+                '<p>' + parseInt(unitPrice).toLocaleString('vi-VN') + ' đ</p>' +
+                '</div>' +
+                '<div class="cart-action-group">' +
+                '<div class="product-action">' +
+                '<label>Số lượng :</label>' +
+                '<input class="action-input quantity-input" title="Quantity Number" type="number" name="quantity" value="' + item.quantity + '" data-product-id="' + item.product.productId + '" />' +
+                '</div>' +
+                '<h6 class="total-price">' + parseInt(totalPriceForItem).toLocaleString('vi-VN') + ' đ</h6>' +
+                '<button class="cart-remove-item" data-product-id="' + item.product.productId + '">Xóa</button>' +
+                '</div>' +
+                '</div>' +
+                '</li>';
+        });
+        $('.cart-list').html(cartHtml);
+        $('.cart-footer').show();
 
-			// Thêm sự kiện lắng nghe thay đổi cho các ô nhập số lượng
-			$('.quantity-input').on('change', function() {
-				var newQuantity = $(this).val();
-				var productId = $(this).data('product-id');
-				updateCartItem(productId, newQuantity);
-			});
-		}
-		$('#totalCartItemsSidebar').text(cartItems.length);
-		$('.checkout-label').text('Thanh Toán');
-	}
+        // Thêm sự kiện lắng nghe thay đổi cho các ô nhập số lượng
+        $('.quantity-input').on('change', function() {
+            var newQuantity = $(this).val();
+            var productId = $(this).data('product-id');
+            updateCartItem(productId, newQuantity);
+        });
+
+        // Thêm sự kiện lắng nghe cho nút "Xóa"
+        $('.cart-remove-item').on('click', function() {
+            var productId = $(this).data('product-id');
+            removeCartItem(productId);
+        });
+    }
+    $('#totalCartItemsSidebar').text(cartItems.length);
+    $('.checkout-label').text('Thanh Toán');
+}
+
 
 
 	function updateCartItem(productId, newQuantity) {
@@ -116,4 +124,23 @@ $(document).ready(function() {
 	function openCartSidebar() {
 		$('.cart-sidebar').addClass('open');
 	}
+	function removeCartItem(productId) {
+    $.ajax({
+        url: '/remove/' + productId,
+        type: 'GET',
+        success: function(response) {
+            if (response.status === 'success') {
+                updateCartHeader(response.totalCartItems);
+                updateCartSidebar(response.cartItems, response.totalPrice);
+            } else {
+                alert('Không thể xóa sản phẩm');
+            }
+        },
+        error: function(error) {
+            console.log(error);
+            alert('An error occurred. Please try again.');
+        }
+    });
+}
+
 });

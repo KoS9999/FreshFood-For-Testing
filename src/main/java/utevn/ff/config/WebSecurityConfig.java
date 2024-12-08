@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import utevn.ff.service.UserDetailService;
@@ -19,6 +20,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private UserDetailService userDetailService;
+	
+	@Autowired
+    private AuthenticationFailureHandler customFailureHandler;
 
 	@Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -63,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginPage("/login")
 			.defaultSuccessUrl("/?login_success")
 			.successHandler(new SuccessHandler()).failureUrl("/login?error=true")
-			.failureUrl("/login?error=true")
+			.failureHandler(customFailureHandler) // Custom failure handler
 			.permitAll()
 			.and()
 		.logout()

@@ -62,11 +62,10 @@
 						</a>
 					</th:block>
 					<form th:action="@{/searchProduct}" class="header-form">
-						<input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm kiếm..."
-							autocomplete="off" />
-						<button>
-							<i class="fas fa-search"></i>
-						</button>
+					    <input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm kiếm..." autocomplete="off" maxlength="51" />
+					    <button>
+					        <i class="fas fa-search"></i>
+					    </button>
 					</form>
 					<div class="header-widget-group">
 						<th:block th:if="${#request.remoteUser}">

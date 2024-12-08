@@ -195,24 +195,38 @@ public class CartController extends CommomController {
 
 
 	// delete cartItem
-	@SuppressWarnings("unlikely-arg-type")
 	@GetMapping(value = "/remove/{id}")
-	public String remove(@PathVariable("id") Long id, HttpServletRequest request, Model model) {
-		Product product = productRepository.findById(id).orElse(null);
+	public ResponseEntity<Map<String, Object>> remove(@PathVariable("id") Long id, HttpServletRequest request) {
+	    Product product = productRepository.findById(id).orElse(null);
+	    Map<String, Object> response = new HashMap<>();
+	    if (product != null) {
+	        Collection<CartItem> cartItems = shoppingCartService.getCartItems();
+	        CartItem item = new CartItem();
+	        BeanUtils.copyProperties(product, item);
+	        item.setProduct(product);
+	        item.setId(id);
+	        
+	        shoppingCartService.remove(item);
+	        session.setAttribute("cartItems", shoppingCartService.getCartItems());
+	        session.setAttribute("totalCartItems", shoppingCartService.getCount());
 
-		Collection<CartItem> cartItems = shoppingCartService.getCartItems();
-		session = request.getSession();
-		if (product != null) {
-			CartItem item = new CartItem();
-			BeanUtils.copyProperties(product, item);
-			item.setProduct(product);
-			item.setId(id);
-			cartItems.remove(session);
-			shoppingCartService.remove(item);
-		}
-		model.addAttribute("totalCartItems", shoppingCartService.getCount());
-		return "redirect:/checkout";
-	}		
+	        double totalPrice = 0;
+	        for (CartItem cartItem : cartItems) {
+	            double price = cartItem.getQuantity() * cartItem.getProduct().getPrice();
+	            totalPrice += price - (price * cartItem.getProduct().getDiscount() / 100);
+	        }
+
+	        response.put("status", "success");
+	        response.put("cartItems", shoppingCartService.getCartItems());
+	        response.put("totalPrice", totalPrice);
+	        response.put("totalCartItems", shoppingCartService.getCount());
+	    } else {
+	        response.put("status", "error");
+	        response.put("message", "Product not found");
+	    }
+	    return ResponseEntity.ok(response);
+	}
+
 	// show check out
 	@GetMapping(value = "/checkout")
 	public String checkOut(Model model, User user) {

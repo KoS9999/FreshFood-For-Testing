@@ -97,6 +97,7 @@
 															<div class="form-group form-group-default">
 																<label>Tên thể lọai</label>
 																<input th:field="*{categoryName}" id="categoryName" type="text" class="form-control" placeholder="Tên thể lọai" required="required">
+														        <div id="errorMessage" style="color: red; margin-top: 5px;"></div>									
 															</div>
 														</div>
 													</div>
@@ -319,5 +320,42 @@
 		
 		
 	</script>
+	<script>
+			// Hàm kiểm tra tính hợp lệ của tên thể loại
+			function validateCategoryName() {
+				var categoryName = document.getElementById("categoryName").value;
+				var submitButton = document.getElementById("submitButton");
+				var errorMessage = document.getElementById("errorMessage");
+		
+				// Kiểm tra độ dài tên thể loại
+				if (categoryName.length > 25) {
+					errorMessage.textContent = "Tên thể loại không được quá 25 ký tự.";
+					submitButton.disabled = true;
+					return false;
+				}
+		
+				// Kiểm tra không có ký tự đặc biệt ngoài chữ cái, số và khoảng trắng
+				// Biểu thức chính quy chỉ cho phép chữ cái (bao gồm dấu), số và khoảng trắng
+				var specialCharPattern = /[^a-zA-Z0-9\sàáãảạăắặằẵẳâấầẫẩậbcddeéèẽẻẹêếềễểệfghijklmnopqrstúùũủụưứừữửựvwxyzÀ-ÿíìĩỉịóòõỏọôốồỗổộơớờỡởợ]/i;
+				if (specialCharPattern.test(categoryName)) {
+					errorMessage.textContent = "Tên thể loại không được chứa ký tự đặc biệt.";
+					submitButton.disabled = true;
+					return false;
+				}
+		
+				// Nếu hợp lệ, bật nút submit và xóa thông báo lỗi
+				errorMessage.textContent = "";
+				submitButton.disabled = false;
+				return true;
+			}
+		
+			// Gắn sự kiện kiểm tra khi người dùng nhập vào trường tên thể loại
+			document.getElementById("categoryName").addEventListener('input', validateCategoryName);
+		
+			// Khởi tạo trạng thái khi trang được tải
+			window.onload = function() {
+				validateCategoryName();
+			}
+		</script>
 </body>
 </html>

@@ -75,15 +75,16 @@
               
             </div>
           </div>
-          <div class="col-lg-9">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="top-filter">
-                  <div class="filter-show">
-                    <label class="filter-label"></label>
-                </div>
-              </div>
-            </div>
+		  <div class="col-lg-9">
+		       <div class="row">
+		                      <div class="col-lg-12">
+		                          <!-- Hiển thị thông báo không có kết quả -->
+		                          <div th:if="${noResultsMessage}">
+		                              <p th:text="${noResultsMessage}" class="alert alert-warning"></p>
+		                          </div>
+		                      </div>
+		                  </div>
+		                  <!-- Hiển thị sản phẩm -->
             
             <!-- item product -->
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">

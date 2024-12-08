@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ChangePassword {
 	@NotEmpty
-	@Length(min = 6)
+	@Length(min = 8)
 	private String newPassword;
 	@NotEmpty
-	@Length(min = 6)
+	@Length(min = 8)
 	private String confirmPassword;
 }

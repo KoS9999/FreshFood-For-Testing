@@ -1,24 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<meta
-    http-equiv="content-type"
-    content="text/html;charset=utf-8"
-/>
-<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="mironcoder" />
     <meta name="email" content="mironcoder@gmail.com" />
     <meta name="profile" content="https://themeforest.net/user/mironcoder" />
     <meta name="template" content="greeny" />
     <meta name="title" content="greeny - Ecommerce Food Store HTML Template" />
-    <meta
-      name="keywords"
-      content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online"
-    />
+    <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online" />
     <title>Web bán thực phẩm sạch</title>
     <link rel="icon" href="images/favicon.png" />
     <link rel="stylesheet" href="fonts/flaticon/flaticon.css" />
@@ -30,8 +21,22 @@
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/user-auth.css" />
-</head>
-<body>
+    
+    <style>
+      /* CSS cho hiệu ứng sáng nút khi nhập thông tin */
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      button.active {
+        background-color: #28a745; /* Màu xanh lá khi nút sáng */
+        cursor: pointer;
+      }
+    </style>
+
+  </head>
+  <body>
     <section class="user-form-part">
       <div class="container">
         <div class="row justify-content-center">
@@ -46,57 +51,57 @@
               </div>
               <div class="user-form-group">
                 <form th:action="@{/register}" method="post" th:object="${user}" class="user-form" onsubmit="return validatePassword()">
-                    <div class="form-group">
-                        <input
-                            type="email"
-                            th:field="*{email}" 
-                            id="email"
-                            class="form-control"
-                            placeholder="Địa chỉ Email"
-                            autocomplete="off"
-                            required="required"
-                        />
-                        <small th:if="${error}" th:text="${error}" class="text-danger"></small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input
-                            type="text"
-                            th:field="*{name}"
-                            id="name"
-                            class="form-control"
-                            placeholder="Họ và tên"
-                            autocomplete="off"
-                            required="required"
-                        />
-                    </div>
-                  
-                    <div class="form-group">
-                        <input
-                            type="password"
-                            th:field="*{password}"
-                            class="form-control"
-                            id="myPass"
-                            name="password"
-                            placeholder="Mật khẩu"
-                            required="required"
-                            oninput="checkPasswordLength()"
-                        />
-                        <small id="password-error" class="text-danger" style="display:none;">Mật khẩu phải trên 8 ký tự</small>
-                    </div>
-                    
-                    <div class="form-check mb-3">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            onclick="hidePass()"/>
-                        <label class="form-check-label" for="check" >Hiển thị mật khẩu</label>
-                    </div>
-                  
-                    <div class="form-button">
-                        <button type="submit">Đăng Ký</button>
-                    </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      th:field="*{email}" 
+                      id="email"
+                      class="form-control"
+                      placeholder="Địa chỉ Email"
+                      autocomplete="off"
+                      required="required"
+                    />
+                    <small th:if="${error}" th:text="${error}" class="text-danger"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      th:field="*{name}"
+                      id="name"
+                      class="form-control"
+                      placeholder="Họ và tên"
+                      autocomplete="off"
+                      required="required"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      th:field="*{password}"
+                      class="form-control"
+                      id="myPass"
+                      name="password"
+                      placeholder="Mật khẩu"
+                      required="required"
+                      oninput="checkPasswordLength()"
+                    />
+                    <small id="password-error" class="text-danger" style="display:none;">Mật khẩu phải trên 8 ký tự</small>
+                  </div>
+
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      onclick="hidePass()"/>
+                    <label class="form-check-label" for="check">Hiển thị mật khẩu</label>
+                  </div>
+
+                  <div class="form-button">
+                    <button type="submit" disabled>Đăng Ký</button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -112,35 +117,54 @@
     </section>
     
     <script>
-        function hidePass() {
-            var x = document.getElementById("myPass");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
+      // Hàm hiển thị mật khẩu
+      function hidePass() {
+        var x = document.getElementById("myPass");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
         }
+      }
 
-        function checkPasswordLength() {
-            var password = document.getElementById("myPass").value;
-            var errorElement = document.getElementById("password-error");
-            if (password.length < 8) {
-                errorElement.style.display = "block";
-            } else {
-                errorElement.style.display = "none";
-            }
+      // Hàm kiểm tra độ dài mật khẩu
+      function checkPasswordLength() {
+        var password = document.getElementById("myPass").value;
+        var errorElement = document.getElementById("password-error");
+        if (password.length < 8) {
+          errorElement.style.display = "block";
+        } else {
+          errorElement.style.display = "none";
         }
+      }
 
-        function validatePassword() {
-            var password = document.getElementById("myPass").value;
-            if (password.length < 8) {
-                alert("Mật khẩu phải trên 8 ký tự");
-                return false;
-            }
-            return true;
+      // Hàm kiểm tra và bật/tắt nút đăng ký
+      function checkForm() {
+        var email = document.getElementById("email").value;
+        var name = document.getElementById("name").value;
+        var password = document.getElementById("myPass").value;
+        var submitButton = document.querySelector("button[type='submit']");
+
+        if (email !== "" && name !== "" && password !== "") {
+          submitButton.classList.add("active"); // Bật sáng nút
+          submitButton.disabled = false; // Cho phép submit
+        } else {
+          submitButton.classList.remove("active"); // Tắt sáng nút
+          submitButton.disabled = true; // Vô hiệu hóa submit
         }
+      }
+
+      // Gắn sự kiện khi người dùng nhập vào các trường
+      document.getElementById("email").addEventListener('input', checkForm);
+      document.getElementById("name").addEventListener('input', checkForm);
+      document.getElementById("myPass").addEventListener('input', checkForm);
+
+      // Khởi tạo nút ở trạng thái vô hiệu hóa khi trang được tải
+      window.onload = function() {
+        checkForm();
+      }
     </script>
-    
+
     <script src="vendor/bootstrap/jquery-1.12.4.min.js"></script>
     <script src="vendor/bootstrap/popper.min.js"></script>
     <script src="vendor/bootstrap/bootstrap.min.js"></script>
@@ -154,5 +178,5 @@
     <script src="js/venobox.js"></script>
     <script src="js/slick.js"></script>
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

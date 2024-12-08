@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
- <meta
-    http-equiv="content-type"
-    content="text/html;charset=utf-8"
-  />
+ <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="mironcoder" />
     <meta name="email" content="mironcoder@gmail.com" />
     <meta name="profile" content="https://themeforest.net/user/mironcoder" />
     <meta name="template" content="greeny" />
     <meta name="title" content="greeny - Ecommerce Food Store HTML Template" />
-    <meta
-      name="keywords"
-      content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online"
-    />
-	<title>Web bán thực phẩm sạch</title>
+    <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online" />
+    <title>Web bán thực phẩm sạch</title>
     <link rel="icon" href="images/favicon.png" />
     <link rel="stylesheet" href="fonts/flaticon/flaticon.css" />
     <link rel="stylesheet" href="fonts/icofont/icofont.min.css" />
@@ -30,6 +21,20 @@
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/user-auth.css" />
+    
+    <style>
+      /* CSS cho hiệu ứng sáng nút khi nhập thông tin */
+      button:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+      }
+
+      button.active {
+          background-color: #28a745; /* Màu xanh lá khi nút sáng */
+          cursor: pointer;
+      }
+    </style>
+
   </head>
   <body>
     <section class="user-form-part">
@@ -44,22 +49,20 @@
                 <h2>Đăng nhập!</h2>
                 <p>Truy Cập Bằng Cách Sử Dụng Thông Tin Đăng Nhập Của Bạn</p>
                 <br>
-                <div class="alert alert-success" role="alert"
-					th:if="${message}">
-					<strong>Chúc mừng !</strong>  Bạn đã đăng ký và kích hoạt tài khoản thành công!
-				</div>
-				
+                <div class="alert alert-success" role="alert" th:if="${message}">
+                  <strong>Chúc mừng !</strong> Bạn đã đăng ký và kích hoạt tài khoản thành công!
+                </div>
               </div>
               <div class="user-form-group">
-                
-                
                 <form th:action="@{/doLogin}" method="post" class="user-form">
-                
-               		 <!-- error message -->
-					<div th:if="${param.error}">
-						<div class="alert alert-danger"><span>Tài khoản hoặc mật khẩu không chính xác!</span></div>
-					</div>
-					<br>
+                  <!-- error message -->
+				  <!-- Thông báo lỗi tài khoản chưa tồn tại -->
+				  <div th:if="${param.error}">
+				         <div class="alert alert-danger">
+				             <span th:text="${param.error}"></span>
+				         </div>
+				     </div>
+                  <br>
                   <div class="form-group">
                     <input
                       type="email"
@@ -86,17 +89,16 @@
                       id="check"
                       onclick="hidePass()"
                     />
-                    <label class="form-check-label" for="check" >Hiển thị mật khẩu</label>
+                    <label class="form-check-label" for="check">Hiển thị mật khẩu</label>
                   </div>
                   <div class="form-button">
-                    <button type="submit">Đăng nhập</button>
+                    <button type="submit" disabled>Đăng nhập</button>
                     <p>
                         Quên Mật Khẩu?
                         <a th:href="@{/forgotPassword}">Tại đây</a>
                     </p>
                   </div>
                 </form>
-                
               </div>
             </div>
             <div class="user-form-remind">
@@ -113,16 +115,42 @@
     </section>
     
     <script>
-		function hidePass() {
-			var x = document.getElementById("myPass");
-			if (x.type === "password") {
-				x.type = "text";
-			} else {
-				x.type = "password";
-			}
-		}
-	</script>
-    
+      // Hàm hiển thị mật khẩu
+      function hidePass() {
+        var x = document.getElementById("myPass");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+
+      // Hàm kiểm tra và bật/tắt nút đăng nhập
+	  function checkForm() {
+	    var email = document.querySelector("input[name='username']").value;
+	    var password = document.querySelector("input[name='password']").value;
+	    var submitButton = document.querySelector("button[type='submit']");
+	  
+	    if (email !== "" && password.length > 7) {
+	      submitButton.classList.add("active"); 
+	      submitButton.disabled = false; 
+	    } else {
+	      submitButton.classList.remove("active");
+	      submitButton.disabled = true; 
+	    }
+	  }
+	  
+	  // Gắn sự kiện khi người dùng nhập vào các trường
+	  document.querySelector("input[name='username']").addEventListener('input', checkForm);
+	  document.querySelector("input[name='password']").addEventListener('input', checkForm);
+	  
+	  // Khởi tạo nút ở trạng thái vô hiệu hóa khi trang được tải
+	  window.onload = function() {
+	    checkForm();
+	  }
+
+    </script>
+
     <script src="vendor/bootstrap/jquery-1.12.4.min.js"></script>
     <script src="vendor/bootstrap/popper.min.js"></script>
     <script src="vendor/bootstrap/bootstrap.min.js"></script>

@@ -95,6 +95,9 @@ public class ShopController extends CommomController {
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
+		if (productPage.isEmpty()) {
+	        model.addAttribute("noResultsMessage", "Không có sản phẩm nào phù hợp với từ khóa tìm kiếm.");
+	    }
 
 		commomDataService.commonData(model, user);
 		model.addAttribute("products", productPage);
